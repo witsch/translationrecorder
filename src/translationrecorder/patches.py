@@ -64,4 +64,13 @@ def patch_translationstring(path, wrapper):
 
     translationstring.ChameleonTranslate = ChameleonTranslate
 
+    # with Paster `pyramid` might get imported before us...
+    try:
+        from pyramid import config, i18n
+    except ImportError:
+        pass
+    else:
+        i18n.Translator = Translator
+        config.i18n.ChameleonTranslate = ChameleonTranslate
+
     return True
