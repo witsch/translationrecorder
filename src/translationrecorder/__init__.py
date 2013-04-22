@@ -178,7 +178,7 @@ class Recorder(object):
         if domains is None:
             domains = global_handlers[path] = {}
 
-            load_catalogs(path, domains)
+            # load_catalogs(path, domains)
 
             def handler(logger=logger, domains=domains, path=path):
                 count = len(domains)
