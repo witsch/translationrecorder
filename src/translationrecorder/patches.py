@@ -71,6 +71,9 @@ def patch_translationstring(path, wrapper):
         pass
     else:
         i18n.Translator = Translator
-        config.i18n.ChameleonTranslate = ChameleonTranslate
+        try:                                # pyramid >=1.2
+            config.i18n.ChameleonTranslate = ChameleonTranslate
+        except AttributeError:              # pyramid <1.2
+            config.ChameleonTranslate = ChameleonTranslate
 
     return True
